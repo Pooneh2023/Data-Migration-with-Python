@@ -1,39 +1,67 @@
-# Data-Migration-with-Python
-🚀 SQL Server to PostgreSQL Data Migration with Python
-This project is a production-grade data migration solution developed in Python to transfer a large-scale database from Microsoft SQL Server to PostgreSQL.
+🛠️ Data-Migration-with-Python
+🚀 SQL Server to PostgreSQL Data Migration Tool
+This project is a production-grade Python script designed to migrate large-scale relational data from Microsoft SQL Server to PostgreSQL reliably, efficiently, and with full logging and error handling.
 
 📌 Project Summary
 Migrated millions of rows across multiple tables (e.g., Users, Moves, GameWords, FloodControl, etc.).
 
-Ensured data type compatibility, including mapping SQL Server's INT, NVARCHAR(MAX), DATETIME, and BIT types to appropriate PostgreSQL types like INTEGER, TEXT, TIMESTAMP, and BOOLEAN.
+Ensured data type compatibility, converting types like:
 
-Handled batch processing efficiently using optimized pagination (OFFSET and later key-based pagination with ID).
+INT → INTEGER
 
-Included type transformation logic (e.g., converting integers like 0/1 to PostgreSQL-native booleans).
+NVARCHAR(MAX) → TEXT
 
-Logged migration progress with detailed output for traceability and debugging.
+DATETIME → TIMESTAMP
 
-Addressed edge cases such as reserved keywords, naming mismatches, and missing fields.
+BIT → BOOLEAN
 
-🛠 Technologies
+Performed batch-wise data transfer using optimized pagination via OFFSET (with potential for key-based pagination later).
+
+Included data transformation logic, such as converting 0/1 to native PostgreSQL booleans.
+
+Implemented detailed logging for traceability, error reporting, and performance tracking.
+
+Handled edge cases like naming mismatches, reserved keywords, and missing/null values.
+
+🧰 Technologies Used
 Python 3
 
-pyodbc for SQL Server connection
+pyodbc – for SQL Server connection
 
-psycopg2 for PostgreSQL connection
+psycopg2 – for PostgreSQL connection
 
-Logging module for real-time feedback
+logging – for real-time feedback and file-based logs
 
-⚙️ Features
-🔄 Batch-wise migration with configurable batch sizes
+⚙️ Key Features
+Feature	Description
+🔄 Batch Processing	Customizable batch sizes for standard and large tables
+✅ Type-safe Transformation	Automatically converts INT to BOOLEAN and other type adjustments
+🧠 Error Handling & Recovery	Rolls back transactions on failure to maintain data integrity
+📝 Auto Logging	Logs every batch, table, and error with timestamps
+🔧 Schema-Agnostic	Dynamically detects columns and adjusts inserts to fit destination schema
 
-✅ Type-safe transformations (e.g., INT → BOOLEAN)
+📦 Real-World Use Case
+This script was deployed in a real-world scenario where an organization migrated its backend from SQL Server to PostgreSQL. The migration preserved:
 
-🧠 Intelligent error handling with rollback and recovery
+Full data integrity
 
-📝 Auto-logging for every batch and table status
+Field types and structure
 
-🔄 Schema mapping flexibility
+Operational continuity with minimal downtime
 
-📦 Use Case
-This project was used in a real-world migration scenario where a company transitioned its backend from SQL Server to PostgreSQL while preserving data integrity, schema structure, and operational stability.
+🚧 Setup & Usage
+Fill in the configuration section:
+
+SQL Server and PostgreSQL connection details
+
+Tables to migrate
+
+Batch size preferences
+
+Run the script:
+
+bash
+Copy
+Edit
+python3 migrate.py
+Check logs via migration.log for progress and results.
